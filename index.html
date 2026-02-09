@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top 10 OSINT Tools for Cybersecurity & Investigations</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #1a365d;
+            --secondary: #2d3748;
+            --accent: #4299e1;
+            --light: #edf2f7;
+            --dark: #2d3748;
+            --success: #48bb78;
+            --warning: #ed8936;
+            --danger: #f56565;
+        }
+
+        body {
+            background-color: #f7fafc;
+            color: #2d3748;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(rgba(26, 54, 93, 0.9), rgba(45, 55, 72, 0.9)), 
+                        url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 1.5rem;
+            opacity: 0.9;
+        }
+
+        .publish-date {
+            display: inline-block;
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            backdrop-filter: blur(5px);
+        }
+
+        /* Introduction Section */
+        .intro {
+            background-color: white;
+            padding: 3rem 0;
+            margin: 2rem 0;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .intro-content {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .intro-text {
+            flex: 2;
+        }
+
+        .intro-image {
+            flex: 1;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            height: 300px;
+        }
+
+        .intro-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        h2 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--accent);
+            display: inline-block;
+        }
+
+        /* Tools Grid */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .tool-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 4px solid var(--accent);
+        }
+
+        .tool-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .tool-image {
+            height: 180px;
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            background-color: #f1f5f9;
+        }
+
+        .tool-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .tool-card:hover .tool-image img {
+            transform: scale(1.05);
+        }
+
+        .tool-number {
+            background-color: var(--primary);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            z-index: 2;
+        }
+
+        .tool-header {
+            padding: 1.5rem;
+            position: relative;
+        }
+
+        .tool-name {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .tool-purpose {
+            color: var(--secondary);
+            font-style: italic;
+            font-size: 0.95rem;
+        }
+
+        .tool-body {
+            padding: 0 1.5rem 1.5rem;
+        }
+
+        .tool-features, .tool-use-case {
+            margin-bottom: 1.2rem;
+        }
+
+        .tool-features h4, .tool-use-case h4 {
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .tool-features h4 i {
+            color: var(--accent);
+        }
+
+        .tool-use-case h4 i {
+            color: var(--success);
+        }
+
+        /* Unique Points Section */
+        .unique-points {
+            background-color: white;
+            padding: 3rem;
+            border-radius: 10px;
+            margin: 3rem 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .points-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .point-card {
+            padding: 1.5rem;
+            border-radius: 8px;
+            background-color: var(--light);
+            border-left: 4px solid var(--accent);
+            transition: transform 0.3s ease;
+        }
+
+        .point-card:hover {
+            transform: translateX(5px);
+        }
+
+        .point-card h4 {
+            color: var(--primary);
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Image Gallery */
+        .image-gallery {
+            margin: 3rem 0;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .gallery-item {
+            border-radius: 8px;
+            overflow: hidden;
+            height: 200px;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 0.5rem;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        /* Conclusion */
+        .conclusion {
+            background: linear-gradient(rgba(26, 54, 93, 0.9), rgba(45, 55, 72, 0.9)), 
+                        url('https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 3rem;
+            border-radius: 10px;
+            margin: 3rem 0;
+            text-align: center;
+        }
+
+        .conclusion h2 {
+            color: white;
+            border-bottom-color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Interactive Elements */
+        .filters {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .filter-btn {
+            padding: 0.7rem 1.5rem;
+            background-color: white;
+            border: 2px solid var(--accent);
+            color: var(--accent);
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background-color: var(--accent);
+            color: white;
+        }
+
+        .tool-card.hidden {
+            display: none;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--secondary);
+            color: white;
+            padding: 3rem 0 1.5rem;
+            margin-top: 3rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1.2rem;
+            color: var(--accent);
+        }
+
+        .copyright {
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .intro-content {
+                flex-direction: column;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .unique-points, .conclusion {
+                padding: 2rem;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s ease forwards;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <h1>Top 10 OSINT Tools for Cybersecurity & Investigations</h1>
+                <p class="subtitle">Open-Source Intelligence (OSINT) is the practice of collecting and analyzing publicly available information to gain insights. Whether you're a cybersecurity professional, journalist, or IT student, mastering OSINT tools is crucial for investigations, threat analysis, and research.</p>
+                <div class="publish-date">
+                    <i class="fas fa-sync-alt"></i> Last Updated: <span id="current-date"></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="intro">
+            <div class="intro-content">
+                <div class="intro-text">
+                    <h2>Mastering the Art of Digital Investigation</h2>
+                    <p>In this blog, we'll explore 10 of the best OSINT tools that can make your investigations easier and more effective. These tools help cybersecurity professionals, law enforcement, journalists, and researchers uncover information from public sources to build intelligence profiles, identify threats, and solve complex problems.</p>
+                    <p>OSINT has become an essential skill in today's digital landscape, with applications ranging from cybersecurity threat hunting to due diligence investigations and even academic research.</p>
+                </div>
+                <div class="intro-image">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Data analysis and investigation">
+                </div>
+            </div>
+        </section>
+
+        <section class="tools-section">
+            <h2>Best 10 OSINT Tools</h2>
+            <p>Filter tools by category:</p>
+            <div class="filters">
+                <button class="filter-btn active" data-filter="all">All Tools</button>
+                <button class="filter-btn" data-filter="recon">Reconnaissance</button>
+                <button class="filter-btn" data-filter="analysis">Analysis</button>
+                <button class="filter-btn" data-filter="social">Social Media</button>
+                <button class="filter-btn" data-filter="search">Search Engines</button>
+            </div>
+
+            <div class="tools-grid" id="tools-container">
+                <!-- Tool cards will be generated by JavaScript -->
+            </div>
+        </section>
+
+        <section class="image-gallery">
+            <h2>OSINT in Action: Real-World Applications</h2>
+            <p>Visual examples of how OSINT tools are used in cybersecurity and investigations:</p>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Network visualization">
+                    <div class="gallery-caption">Network Analysis</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1599508704512-2f292ef7c6c1?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Data mapping">
+                    <div class="gallery-caption">Data Correlation</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1535223289827-42f1e9919769?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Digital investigation">
+                    <div class="gallery-caption">Digital Forensics</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Threat intelligence">
+                    <div class="gallery-caption">Threat Intelligence</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="unique-points">
+            <h2>Unique Advantages of OSINT Tools</h2>
+            <p>Beyond their primary functions, OSINT tools offer several unique advantages that make them indispensable for modern investigations:</p>
+            <div class="points-grid">
+                <div class="point-card">
+                    <h4><i class="fas fa-layer-group"></i> Data Correlation</h4>
+                    <p>OSINT tools can correlate data from multiple sources to create comprehensive profiles, revealing connections that would be impossible to see manually.</p>
+                </div>
+                <div class="point-card">
+                    <h4><i class="fas fa-history"></i> Historical Analysis</h4>
+                    <p>Many tools archive historical data, allowing investigators to track changes over time and establish timelines of events or activities.</p>
+                </div>
+                <div class="point-card">
+                    <h4><i class="fas fa-bolt"></i> Automation Efficiency</h4>
+                    <p>Automated OSINT tools can process thousands of data points in minutes, saving investigators hundreds of hours of manual work.</p>
+                </div>
+                <div class="point-card">
+                    <h4><i class="fas fa-globe"></i> Global Reach</h4>
+                    <p>These tools can access information from global sources simultaneously, providing a worldwide perspective on digital footprints.</p>
+                </div>
+                <div class="point-card">
+                    <h4><i class="fas fa-shield-alt"></i> Legal Safety</h4>
+                    <p>Since OSINT tools gather only publicly available information, investigations remain within legal boundaries, avoiding privacy violations.</p>
+                </div>
+                <div class="point-card">
+                    <h4><i class="fas fa-project-diagram"></i> Network Visualization</h4>
+                    <p>Advanced tools like Maltego create visual relationship maps that make complex connections between entities easy to understand.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="conclusion">
+            <h2>Conclusion</h2>
+            <p>OSINT tools are essential in today's digital world for cybersecurity, research, and investigations. Using the right tool at the right time can uncover hidden information and provide a strategic advantage. Whether you are a beginner or a professional, exploring these 10 OSINT tools will significantly enhance your investigative skills.</p>
+            <p style="margin-top: 1.5rem; font-style: italic;">Remember: With great power comes great responsibility. Always use OSINT tools ethically and within legal boundaries.</p>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About This Blog</h3>
+                    <p>This blog provides educational content about Open-Source Intelligence (OSINT) tools and methodologies for cybersecurity professionals, investigators, and researchers.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Legal Disclaimer</h3>
+                    <p>All information provided is for educational purposes only. Always ensure you have proper authorization before conducting any investigations.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p>For questions or suggestions, contact: <br>info@osintblog.example.com</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; <span id="current-year"></span> OSINT Tools Blog. All rights reserved. | Created for educational purposes</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Format current date
+        function formatDate(date) {
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            return date.toLocaleDateString('en-US', options);
+        }
+
+        // Set current date
+        document.getElementById('current-date').textContent = formatDate(new Date());
+        
+        // Set current year in footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // OSINT Tools Data with verified image URLs
+        const osintTools = [
+            {
+                id: 1,
+                name: "Maltego",
+                purpose: "Link analysis and data mining",
+                features: "Visual mapping of relationships between people, domains, emails, social media, and networks.",
+                useCase: "Tracking connections in cyber investigations or social network analysis.",
+                categories: ["analysis", "recon"],
+                icon: "fas fa-project-diagram",
+                image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                id: 2,
+                name: "Shodan",
+                purpose: "Internet-connected device search engine",
+                features: "Finds devices like webcams, routers, and servers exposed online.",
+                useCase: "Security auditing, monitoring exposed IoT devices.",
+                categories: ["search", "recon"],
+                icon: "fas fa-search",
+                image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                id: 3,
+                name: "TheHarvester",
+                purpose: "Email, domain, and IP reconnaissance",
+                features: "Collects emails, subdomains, hosts, and open ports from public sources.",
+                useCase: "Gathering information for penetration testing and threat intelligence.",
+                categories: ["recon"],
+                icon: "fas fa-envelope",
+                image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                id: 4,
+                name: "SpiderFoot",
+                purpose: "Automated OSINT collection and analysis",
+                features: "Supports over 100 modules for IPs, domains, emails, and social media.",
+                useCase: "Automated reconnaissance for security analysts.",
+                categories: ["analysis", "recon"],
+                icon: "fas fa-spider",
+                image: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                id: 5,
+                name: "Recon-ng",
+                purpose: "Web reconnaissance framework",
+                features: "Modular, supports API integration for data gathering.",
+                useCase: "Detailed information gathering about domains, emails, and people.",
+                categories: ["recon"],
+                icon: "fas fa-terminal",
+                image: "https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                id: 6,
+                name: "Social-Engineer Toolkit (SET)",
+                purpose: "Social engineering and penetration testing",
+                features: "Phishing simulation, credential harvesting, and attack scenario testing.",
+                useCase: "Cybersecurity training and awareness testing.",
+                categories: ["social"],
+                icon: "fas fa-user-secret",
+                image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                id: 7,
+                name: "OSINT Framework",
+                purpose: "Directory of OSINT tools",
+                features: "Organized list of OSINT tools for different categories like emails, social media, and domains.",
+                useCase: "Quick reference for investigators and researchers.",
+                categories: ["search", "analysis"],
+                icon: "fas fa-th",
+                image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                id: 8,
+                name: "Google Dorks",
+                purpose: "Advanced Google search queries",
+                features: "Find sensitive information using search operators.",
+                useCase: "Discover exposed documents, login portals, and confidential data.",
+                categories: ["search"],
+                icon: "fab fa-google",
+                image: "https://images.unsplash.com/photo-1573164713988-8665fc963095?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                id: 9,
+                name: "Censys",
+                purpose: "Internet asset discovery and monitoring",
+                features: "Identify hosts, certificates, and vulnerabilities.",
+                useCase: "Security researchers tracking exposed assets on the web.",
+                categories: ["search", "recon"],
+                icon: "fas fa-eye",
+                image: "https://images.unsplash.com/photo-1535223289827-42f1e9919769?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                id: 10,
+                name: "Metagoofil",
+                purpose: "Metadata extraction from public documents",
+                features: "Extracts info like usernames, software versions, and file paths from PDFs, DOCs, and PPTs.",
+                useCase: "Investigating digital footprints of organizations.",
+                categories: ["analysis"],
+                icon: "fas fa-file-alt",
+                image: "https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            }
+        ];
+
+        // DOM elements
+        const toolsContainer = document.getElementById('tools-container');
+        const filterButtons = document.querySelectorAll('.filter-btn');
+
+        // Get color for category tags
+        function getCategoryColor(category) {
+            const colors = {
+                'recon': '#4299e1',
+                'analysis': '#48bb78',
+                'social': '#ed8936',
+                'search': '#9f7aea'
+            };
+            return colors[category] || '#718096';
+        }
+
+        // Display tools
+        function displayTools(tools) {
+            toolsContainer.innerHTML = '';
+            
+            tools.forEach(tool => {
+                const toolCard = document.createElement('div');
+                toolCard.className = `tool-card ${tool.categories.join(' ')}`;
+                
+                toolCard.innerHTML = `
+                    <div class="tool-image">
+                        <div class="tool-number">${tool.id}</div>
+                        <img src="${tool.image}" alt="${tool.name} - OSINT Tool" loading="lazy" 
+                             onerror="this.src='https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'">
+                    </div>
+                    <div class="tool-header">
+                        <h3 class="tool-name">${tool.name}</h3>
+                        <p class="tool-purpose">${tool.purpose}</p>
+                    </div>
+                    <div class="tool-body">
+                        <div class="tool-features">
+                            <h4><i class="${tool.icon}"></i> Key Features</h4>
+                            <p>${tool.features}</p>
+                        </div>
+                        <div class="tool-use-case">
+                            <h4><i class="fas fa-bullseye"></i> Primary Use Case</h4>
+                            <p>${tool.useCase}</p>
+                        </div>
+                        <div class="tool-categories">
+                            <small>Categories: ${tool.categories.map(cat => 
+                                `<span style="background:${getCategoryColor(cat)}; color:white; padding:2px 8px; border-radius:10px; margin-right:5px; font-size:0.8rem;">${cat}</span>`
+                            ).join(' ')}</small>
+                        </div>
+                    </div>
+                `;
+                
+                toolsContainer.appendChild(toolCard);
+            });
+            
+            // Add animation to newly added cards
+            const toolCards = document.querySelectorAll('.tool-card');
+            toolCards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.1}s`;
+                card.classList.add('fade-in');
+            });
+        }
+
+        // Filter functionality
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Update active button
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                
+                const filter = button.getAttribute('data-filter');
+                
+                // Filter tools
+                let filteredTools;
+                if (filter === 'all') {
+                    filteredTools = osintTools;
+                } else {
+                    filteredTools = osintTools.filter(tool => 
+                        tool.categories.includes(filter)
+                    );
+                }
+                
+                // Display filtered tools
+                displayTools(filteredTools);
+            });
+        });
+
+        // Add interactivity to tool cards
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('.tool-card')) {
+                const toolCard = e.target.closest('.tool-card');
+                
+                // Add a temporary highlight effect
+                toolCard.style.boxShadow = '0 15px 35px rgba(66, 153, 225, 0.3)';
+                setTimeout(() => {
+                    toolCard.style.boxShadow = '';
+                }, 500);
+            }
+        });
+
+        // Image gallery hover effect enhancement
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        galleryItems.forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                item.style.transform = 'translateY(-5px)';
+                item.style.transition = 'transform 0.3s ease';
+            });
+            
+            item.addEventListener('mouseleave', () => {
+                item.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Initial display of all tools
+        displayTools(osintTools);
+
+        // Add loading animation for images
+        const images = document.querySelectorAll('img');
+        images.forEach(img => {
+            img.addEventListener('load', function() {
+                this.style.opacity = '1';
+            });
+            
+            img.addEventListener('error', function() {
+                console.log('Image failed to load:', this.src);
+                // Fallback image
+                this.src = 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w-800&q=80';
+            });
+        });
+    </script>
+</body>
+</html>
